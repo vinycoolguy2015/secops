@@ -8,7 +8,7 @@ pipeline {
           script{
             def remote = [:]
             remote.name = "controlnode"
-            remote.host = "xxx.xxx.xxx.xxx"
+            remote.host = "34.125.19.129"
             remote.allowAnyHosts = true
 
             withCredentials([sshUserPrivateKey(credentialsId: 'sshUser', keyFileVariable: 'identity', passphraseVariable: '', usernameVariable: 'userName')]) {
@@ -19,7 +19,7 @@ pipeline {
                   sshCommand remote: remote, sudo: true, command: 'echo "some more stuff goes here....."'
               }
                 stage("Scan with InSpec") {
-                  sshCommand remote: remote, sudo: true, command: 'inspec exec /root/linux-baseline/'
+                  sshCommand remote: remote, sudo: true, command: 'inspec exec linux-baseline/'
               }
             }
           }
