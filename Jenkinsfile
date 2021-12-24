@@ -19,7 +19,7 @@ pipeline {
                   sshCommand remote: remote, sudo: true,command: 'cd secops/ansible && ansible-playbook compliance.yaml'
               }
                 stage("Scan with InSpec") {
-                  sshCommand remote: remote, sudo: true, command: 'inspec exec linux-baseline/'
+                  sshCommand remote: remote, sudo: true, command: 'inspec exec --no-distinct-exit linux-baseline/'
               }
             }
           }
